@@ -12,6 +12,8 @@
     <div id="containter"></div>
   <script>
     $(function() { // on load
+     var x = jQuery('#sample');
+      console.log('x=',x);
     var t = jQuery('#sample').text();  // textContent of script
       console.log('t=',t);
     jQuery('#container').html(t);
