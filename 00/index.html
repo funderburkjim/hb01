@@ -7,12 +7,15 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
   <script type="text/html" src="sample.html" id="sample"></script>
 </head>
-  <div id="containter"></div>
+<body>
+<!--Content of the document......-->
+    <div id="containter"></div>
   <script>
+    $(function() { // on load
     var t = jQuery('#sample').textContent;
     jQuery('#container').html(t);
+    });
   </script>
-<body>
-Content of the document......
+
 </body>
 </html>
