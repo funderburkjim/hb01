@@ -12,7 +12,7 @@
     <div id="containter"></div>
   <script>
     $(function() { // on load
-    var t = jQuery('#sample').textContent;
+    var t = jQuery('#sample').text();  // textContent of script
       console.log('t=',t);
     jQuery('#container').html(t);
     });
