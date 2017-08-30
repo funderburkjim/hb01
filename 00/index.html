@@ -12,8 +12,9 @@
     <div id="containter"></div>
   <script>
     $(function() { // on load
-     var x = jQuery('#sample');
+      var x = jQuery('#sample');
       console.log('x=',x);
+      thescript=x; // global variable for debugging
     var t = jQuery('#sample').text();  // textContent of script
       console.log('t=',t);
     jQuery('#container').html(t);
