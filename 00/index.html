@@ -41,7 +41,7 @@
     jQuery('#samplefile_container').load('sample.html');
     // Here is experiment using jQuery 'get' to return the file contents as a string
     // which goes into a Javascript variable.  This is rather tricky due to async.
-    var Global_t;
+    // Global_t is undeclared variable, therefore a GLOBAL Javascript variable
     jQuery.get('sample.html',function(data) {Global_t = data;},"text");
     });
   </script>
