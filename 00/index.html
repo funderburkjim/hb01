@@ -8,13 +8,17 @@
   <script type="text/html" src="sample.html" id="samplefile"></script>
 <script type="text/html" id="sample">
 <!-- This is html content to be imported via a script -->
-<H2>Hello, I am from a script</H2>
+<H2>Hello, I am from an inline script</H2>
 <p id="paragraph">I am a paragraph</p>
   </script>
 </head>
 <body>
 <!--Content of the document......-->
     <div id="container"></div>
+  <div id="container1">
+    <h1>Following html is from a script imported in a file</h1>
+    <div id="samplefile_container"></div>
+  </div>
   <script>
     $(function() { // on load
       var x = jQuery('#sample');
@@ -24,7 +28,8 @@
       console.log('t=',t);
     // jQuery('#container').html('<h1>This is html from a string</h1>');
     jQuery('#container').html(t);
-      
+    t = jQuery('#samplefile').text();
+    jQuery('#samplefile_container').html(t);
     });
   </script>
 
