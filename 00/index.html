@@ -5,7 +5,16 @@
 <title>Importing html with a script</title>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
-  <script type="text/html" src="sample.html.js" id="samplefile"></script>
+<!--
+  <script type="text/html" src="sample.html" id="samplefile"></script>
+  This does NOT work, because with type="text/html", the 'src' attribute is ignored.
+  "Any other value or MIME type: Embedded content is treated as a data block which won't be processed by the browser. 
+   The src attribute will be ignored."
+    Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
+   One workaround is to use the jQuery load function:
+   var text = jQuery('#container').load('sample.html');
+
+-->
 <script type="text/html" id="sample">
 <!-- This is html content to be imported via a script -->
 <H2>Hello, I am from an inline script</H2>
@@ -28,8 +37,8 @@
       console.log('t=',t);
     // jQuery('#container').html('<h1>This is html from a string</h1>');
     jQuery('#container').html(t);
-    t = jQuery('#samplefile').text();
-    jQuery('#samplefile_container').html(t);
+    //t = jQuery('#samplefile').text();
+    jQuery('#samplefile_container').load('sample.html');
     });
   </script>
 
