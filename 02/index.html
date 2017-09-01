@@ -15,7 +15,7 @@
       var src = document.getElementById("template1").innerHTML;
       var template1 = Handlebars.compile(src);
 
-      var output = template({content: "<h1>Hello</h1>"});
+      var output = template1({content: "<h1>Hello</h1>"});
       document.body.innerHTML += output;
     </script>
    <hr/>
@@ -27,7 +27,7 @@
       var src = document.getElementById("template2").innerHTML;
       var template2 = Handlebars.compile(src);
 
-      var output = template({content: "<h1>Hello</h1>"});
+      var output = template2({content: "<h1>Hello</h1>"});
       document.body.innerHTML += output;
     </script>
 
