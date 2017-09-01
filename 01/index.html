@@ -13,6 +13,15 @@
     {{/each}}
   </ul>
 </script>
+
+</head>
+<body>
+<!--Content of the document......-->
+<H2>Handlebars processes a list </H2>
+<p> The builtin <i>{{#each X}}</i> function loops through
+  <br/>each object in the list X
+</p>
+<div id="container"></div>
 <script> // Use the template script by an appropriate context object
     var src = document.getElementById('quickstart').innerHTML;
     var template = Handlebars.compile(src);
@@ -29,15 +38,6 @@
   // So that it generates output
   document.body.innerHTML += output;
 </script>
-</head>
-<body>
-<!--Content of the document......-->
-<H2>Handlebars processes a list </H2>
-<p> The builtin <i>{{#each X}}</i> function loops through
-  <br/>each object in the list X
-</p>
-<div id="container"></div>
-
 
 </body>
 </html>
