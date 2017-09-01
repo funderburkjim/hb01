@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Handlebars Expressions</title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+ 
+  </head>
+  <body>
+    <H2>Use of {{X}} where X has markup</H2>
+    <script id="template1" type="template/handlebars">
+      {{content}}
+    </script>
+    <script>
+      var src = document.getElementById("template1").innerHTML;
+      var template1 = Handlebars.compile(src);
+
+      var output = template({content: "<h1>Hello</h1>"});
+      document.body.innerHTML += output;
+    </script>
+   <hr/>
+       <H2>Use of {{X}} where X has markup</H2>
+    <script id="template2" type="template/handlebars">
+      {{{content}}}
+    </script>
+    <script>
+      var src = document.getElementById("template2").innerHTML;
+      var template2 = Handlebars.compile(src);
+
+      var output = template({content: "<h1>Hello</h1>"});
+      document.body.innerHTML += output;
+    </script>
+
+   
+  </body>
+</html>
