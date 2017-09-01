@@ -25,12 +25,14 @@
       { from: "John", text: "Second Post" }
     ]
   });
-  //document.body.innerHTML += output;
+  // There are many ways the 'output' string can be inserted into the DOM,
+  // So that it generates output
+  document.body.innerHTML += output;
 </script>
 </head>
 <body>
 <!--Content of the document......-->
-<H2>Handlebars processes a list <H2>
+<H2>Handlebars processes a list </H2>
 <p> The builtin <i>{{#each X}}</i> function loops through
   <br/>each object in the list X
 </p>
