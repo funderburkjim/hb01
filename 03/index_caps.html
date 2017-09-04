@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Handlebars Helpers</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+
+  </head>
+  <body>
+
+  <script id="template" type="template/handlebars">
+   <!-- in a non-Javascript 'script' which is to be inserted in HTML,
+     The comments also should be HTML comments
+   -->
+      {{caps name}} is capitalized {{name}} 
+      <!-- Our template uses the 'caps' helper -->
+  </script> 
+  <script> // Define 'caps' function, and register it as a Handlebars Helper
+  // Note that 'caps' is here a 'global' variable, so it's value is
+  // available in other scripts.
+   var caps = function(text) {
+    return text.toUpperCase();
+   };
+   Handlebars.registerHelper("caps", caps);
+  </script>
+  <script> 
+   // compile the 'template' script 
+   //into a local 'template' Javascript variable
+   var src = document.getElementById("template").innerHTML;
+   var template = Handlebars.compile(src);
+  </script>
+  <script> // Use the template
+      var output = template({name: "jimmy"});
+      document.body.innerHTML += output;
+    </script>
+  </body>
+</html>
