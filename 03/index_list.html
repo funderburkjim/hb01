@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Handlebars Helpers</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+
+  </head>
+  <body>
+
+  <script id="template1" type="template/handlebars">
+   <!-- in a non-Javascript 'script' which is to be inserted in HTML,
+     The comments also should be HTML comments
+   -->
+      {{list numbers}}  
+      <!-- Our template uses the 'list' helper -->
+  </script> 
+  <script id="template2" type="template/handlebars">
+   <!-- template2 uses {{{ .. }}}
+   -->
+      {{{list numbers}}}
+      <!-- Our template uses the 'list' helper -->
+  </script> 
+  <script id="template3" type="template/handlebars">
+   <!-- Here we use {{X}}, as in template1,
+    but we use a 'list1' Helper, which returns a SafeString.
+    The end result will be same as template2 (which uses {{{X}}}
+   -->
+      {{list1 numbers}}  
+      <!-- Our template uses the 'list1' helper -->
+  </script> 
+
+  <script> 
+   // compile the 'template1' script that uses the 'list' Helper.
+   //into a local 'template1' Javascript variable
+   var src = document.getElementById("template1").innerHTML;
+   // We can compile this BEFORE or AFTER the helper is registered with
+   // Handlebars
+   var template1 = Handlebars.compile(src);
+   // Similarly compile template2 script into template2 variable
+   src = document.getElementById("template2").innerHTML;
+   var template2 = Handlebars.compile(src);
+   // Similarly compile template3 script into template3 variable
+   src = document.getElementById("template3").innerHTML;
+   var template3 = Handlebars.compile(src);
+  </script>
+
+   <script> // Define 'list' function, and register it as a Handlebars Helper
+  // Note that 'list' is here a 'global' variable, so it's value is
+  // available in other scripts.
+   var list = function(list) {
+    // Construct a string of HTML
+    var output = "<ul>";
+    for(var i in list) {
+     output = output + "<li>" + list[i] + "</li>";
+    }
+    output = output + "</ul>";
+    return output;
+   };
+   Handlebars.registerHelper("list", list);
+  </script>
+
+   <script> // Define 'list1' function, and register it as a Handlebars Helper
+  // Note that 'list1' is here a 'global' variable, so it's value is
+  // available in other scripts.
+   var list1 = function(list) {
+    // Construct a string of HTML
+    var output = "<ul>";
+    for(var i in list) {
+     output = output + "<li>" + list[i] + "</li>";
+    }
+    output = output + "</ul>";
+    // This is the difference from the 'list' function
+    var safeoutput = new Handlebars.SafeString(output);
+    return safeoutput;
+   };
+   Handlebars.registerHelper("list1", list1);
+  </script>
+
+  <!-- Some html precedes the template use -->
+   <H2>'list' Handlebars Helper</H2>
+   <p>Our 'list' Handlebars Helper turns a Javascript list into
+      an HTML list.
+   </p>
+   <p> <strong>template1</strong>:  we use <i>{{list numbers}}</i>.  
+    It treats markup as text</p>
+  <script> // Use  template1
+   // 'numbers' is the API for the template
+      var output = template1({numbers:["one", "two", "three", "four"] });
+      document.body.innerHTML += output;
+  </script>
+  <hr/>
+
+   <p> <strong>template2</strong>:  we use <i>{{{list numbers}}}</i>.  
+    It does NOT <i>escape</i> markup</p>
+  <script> // Use  template2
+   // 'numbers' is the API for the template
+      var output = template2({numbers:["one", "two", "three", "four"] });
+      document.body.innerHTML += output;
+  </script>
+  <hr/>
+
+   <p> <strong>template3</strong>:  we use <i>{{list1 numbers}}</i>.  
+    It also does NOT <i>escape</i> markup, as with <i>template2</i>
+    <br/> However, the 'list1' helper returns a 
+     <i>Handlebars.SafeString</i> object, instead of a plain Javascript
+     string. 
+   <br/> That is why the use of {{X}} in template2 does not escape
+     the markup generated in the list1 function.
+  </p>
+  <script> // Use  template3
+   // 'numbers' is the API for the template
+      var output = template3({numbers:["one", "two", "three", "four"] });
+      document.body.innerHTML += output;
+  </script>
+  <hr/>
+  </body>
+</html>
